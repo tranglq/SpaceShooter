@@ -10,15 +10,31 @@ public class Boundary
 
 public class PlayerController : MonoBehaviour {
 
+    public GameObject shot;
+    public Transform shotSpawn;
+
     public float speed;
     public float tilt;
     public Boundary boundary;
-  
+    public float fireRate;
+
+    private float nextFire;
+
+    private void Update()
+    {
+        if(Input.GetButton("Fire1")&& Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            GameObject clone = Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+
+        }
+
+    }
 
     private void FixedUpdate()
     {
 
-
+         
 
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
