@@ -13,11 +13,11 @@ public class DestroyByContract : MonoBehaviour {
     {
         GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
 
-        if( gameController == null)
+        if( gameController != null)
         {
             gameController = gameControllerObject.GetComponent<GameController>();
         }
-        if( gameController != null)
+        if( gameController == null)
         {
             Debug.Log("Cannot find 'GameController' script");
         }
@@ -25,14 +25,15 @@ public class DestroyByContract : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Boundary") )
+        if(other.tag == "Boundary" || other.tag == "Enemy")
         {
             return;
         }
 
-        
-        Instantiate(explosion, transform.position, transform.rotation);
-        
+        if(explosion != null)
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
 
         if(other.tag == "Player")
         {

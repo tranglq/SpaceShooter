@@ -7,8 +7,6 @@ public class WeaponController : MonoBehaviour {
     public Transform shotSpawn;
     public float fireRate;
     public float delay;
-
-    private AudioSource audioSource;
 	
 	void Start () {
         InvokeRepeating("Fire", delay, fireRate);
