@@ -13,11 +13,11 @@ public class DestroyByContract : MonoBehaviour {
     {
         GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
 
-        if( gameController != null)
+        if( gameController == null)
         {
             gameController = gameControllerObject.GetComponent<GameController>();
         }
-        if( gameController == null)
+        if( gameController != null)
         {
             Debug.Log("Cannot find 'GameController' script");
         }
