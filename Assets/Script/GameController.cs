@@ -55,7 +55,8 @@ public class GameController : MonoBehaviour {
                 GameObject hazard = hazards[Random.Range(0, hazards.Length)];
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
-                Instantiate(hazard, spawnPosition, spawnRotation);
+                GameObject clone = Instantiate(hazard, spawnPosition, spawnRotation);
+                ReverseDirection(clone);
                 yield return new WaitForSeconds(spawnWait);
             }
 
@@ -68,6 +69,12 @@ public class GameController : MonoBehaviour {
                 break;
             }
         }
+    }
+
+    void ReverseDirection(GameObject clone)
+    {
+        clone.transform.rotation.y = 0;
+        clone.GetComponent<Mover>().speed = 5;
     }
 
     public void AddScore(int NewScoreValue)
