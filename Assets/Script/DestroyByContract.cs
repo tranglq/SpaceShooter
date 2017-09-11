@@ -7,7 +7,7 @@ public class DestroyByContract : MonoBehaviour {
     public GameObject explosion;
     public GameObject PlayerExposion;
     public int ScoreValue;
-    private GameController gameController = new GameController();
+    private GameController gameController;
 
     private void Start()
     {
@@ -25,15 +25,14 @@ public class DestroyByContract : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Boundary") || other.CompareTag("Enemy"))
+        if(other.CompareTag("Boundary") )
         {
             return;
         }
 
-        if(explosion != null)
-        {
-            Instantiate(explosion, transform.position, transform.rotation);
-        }
+        
+        Instantiate(explosion, transform.position, transform.rotation);
+        
 
         if(other.tag == "Player")
         {
